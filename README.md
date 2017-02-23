@@ -77,8 +77,9 @@ PokktAds.Banner.LoadBannerWithRect(<ScreenName>,<Height>, Width>, <x>,<y>);Heig
 
 ####4. Auto refresh BannerYou can also set banner to auto-refresh using:<br>`PokktAds.Banner.ShouldAutoRefresh(<true/false>)`
 ###IGA (In Game Ad)Introducing a new way to monetize the game. Using Pokkt IGA (In-Game Ads) you can use your in-game objects to display ads. Pokkt IGA use a less intrusive way to achieve this. Refer our sample for a better understanding. Our existing SDK + Unity Plugin has this feature with version 6.0.
+**Usage:** Refer the following image
 
-**Todo**Usage: Refer the following image9
+![Screen Name](images/igaDemo.png)
 Alternatively, you can assign a IGA container using one of the following methods:
 An IGA Banner and Hoarding are more like interstitials. The only difference between these is IGA-Banners are smaller images than Hoardings.
 
