@@ -11,7 +11,7 @@ We also support mediation for various third party networks. To know the supporte
 minSdkVersion supported is 11 .
 **ScreenName:** This one parameter is accepted by almost all API’s of Pokkt SDK. This controls the placement of ads and can be created on Pokkt Dashboard.
 We will be referencing PokktAds Demo( Sample App ) provided insidePAP_AAR_WithDemo_v6.0.unitypackage during the course of explanation in this document.
-We suggest you go through the sample app for better understanding.##Project Configuration###Dependencies● Add “ PAP_AAR_WithDemo_v6.0.unitypackage” to your Unity app/game project. The contents of “Plugin/Pokkt” and the “ Plugins/Android” directories are mandatory.
+We suggest you go through the sample app for better understanding.##Project Configuration (Android)###Dependencies● Add “ PAP_AAR_WithDemo_v6.0.unitypackage” to your Unity app/game project. The contents of “Plugin/Pokkt” and the “ Plugins/Android” directories are mandatory.
 ● Add “ android support v4” to your project.
 ● We expect Google play services integrated in project, although it’s optional but we recommend you to integrate it, as it’s required to fetch AdvertisingID for device,which is useful to deliver targeted advertising to Android users.
 ###Manifest####Permissions DeclarationsAdd the following permissions to your project manifest
@@ -37,7 +37,21 @@ We also support mediation for various third party networks. To know the supporte
 ~~~<activityandroid:name="com.pokkt.sdk.userinterface.presenter.activity.PokktAdActivity"android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"android:hardwareAccelerated="true"android:screenOrientation="landscape"android:windowSoftInputMode="stateAlwaysHidden|adjustUnspecified" />
 ~~~You can change the android:screenOrientation="landscape" to of your choice, the way you want to display the ads.
 #### Service DeclarationAdd the following service in your AndroidManifest for receiving InApp notifications. How to set up InApp notifications .~~~<serviceandroid:name="com.pokkt.sdk.notification.NotificationService"android:exported="false"android:label="PokktNotificationService" />
-~~~# Implementation Steps## SDK Configuration1. Set Application Id and Security key in Pokkt SDK. You can get it from Pokkt dashboard from your account. We generally assign unique application Id and Security key.
+~~~
+
+##Project Configuration (iOS)###Dependencies● Add “ PokktUnityPlugin_WithDemo_IOS.unitypackage” to your Unity app/game project.The contents of “Plugin/Pokkt” and the “ Plugins/iOS” directories are mandatory.
+● Extract and Copy the content of PokktSDK.zip( contains PokktSDK bundle and Framework) to Assets->Plugins->iOS directory.
+● Ensure “ -ObjC ” flag is set inside project settings “Build Settings -> Other Linker Flags”.
+● Ensure that Bitcode i s set to false in the generated project's Build Settings.
+● Make sure to add the PokktSDK.bundle
+###Framework
+
+~~~CoreData.frameworkFoundation.frameworkMediaPlayer.frameworkSystemConfiguration.frameworkUIKit.frameworkCoreTelephony.frameworkEventKit.frameworkAdSupport.frameworkCoreGraphics.frameworkCoreMotion.frameworkMessageUI.frameworkEventKitUI.frameworkCoreLocation.frameworkAVFoundation.frameworklibc++.tbd
+~~~###Info.plistAdd the below exceptions to your application info.plist.
+
+~~~<key>NSAppTransportSecurity</key><dict><key>NSExceptionDomains</key><dict><key>pokkt.com</key><dict><key>NSIncludesSubdomains</key><true/><key>NSExceptionAllowsInsecureHTTPLoads</key><true/><key>NSExceptionRequiresForwardSecrecy</key><false/><key>NSExceptionMinimumTLSVersion</key><string>TLSv1.2</string><key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key><false/><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><true/><key>NSThirdPartyExceptionMinimumTLSVersion</key><string>TLSv1.2</string><key>NSRequiresCertificateTransparency</key><false/></dict><key>cloudfront.net</key><dict><key>NSIncludesSubdomains</key><true/><key>NSExceptionAllowsInsecureHTTPLoads</key><true/><key>NSExceptionRequiresForwardSecrecy</key><false/><key>NSExceptionMinimumTLSVersion</key><string>TLSv1.2</string><key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key><false/><key>NSThirdPartyExceptionRequiresForwardSecrecy</key><true/><key>NSThirdPartyExceptionMinimumTLSVersion</key><string>TLSv1.2</string><key>NSRequiresCertificateTransparency</key><false/></dict></dict>
+</dict>
+~~~# Implementation Steps## SDK Configuration1. Set Application Id and Security key in Pokkt SDK. You can get it from Pokkt dashboard from your account. We generally assign unique application Id and Security key.
 	`PokktAds.SetPokktConfig(“<Pokkt Application ID>”, “<Pokkt Security Key>”);`
 2. If you are using server to server integration with Pokkt, you can also set Third Party UserId in PokktAds.
 	`PokktAds.SetThirdPartyUserId(“<Third party user Id>”);`3. When your application is under development and if you want to see Pokkt logs and other informatory messages, you can enable it by setting ShouldDebug to true . Make sure to disable debugging before release.
